@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/routes.dart' as routes;
 
-import 'main_model.dart';
-
 final loginProvider = ChangeNotifierProvider((ref) => LoginModel());
 
 class LoginModel extends ChangeNotifier {
@@ -13,15 +11,12 @@ class LoginModel extends ChangeNotifier {
   String email = '';
   String password = '';
 
-  Future<void> login(
-      {required BuildContext context, required MainModel mainModel}) async {
+  Future<void> login({required BuildContext context}) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-
-      mainModel.setCurrentUser();
 
       routes.toMyApp(context: context);
     } on FirebaseAuthException catch (e) {
@@ -35,13 +30,6 @@ class LoginModel extends ChangeNotifier {
 
   void toggleIsObscure() {
     isObscure = !isObscure;
-    notifyListeners();
-  }
-
-  ///
-  Future<void> logout() async {
-    await FirebaseAuth.instance.signOut();
-
     notifyListeners();
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test_udemy_firebase/models/main_model.dart';
 
 import '../main.dart';
 import '../views/login_page.dart';
@@ -26,8 +25,7 @@ void toSignupPage({required BuildContext context}) {
 }
 
 ///
-void toLoginPage(
-    {required BuildContext context, required MainModel mainModel}) {
+void toLoginPage({required BuildContext context}) {
   Navigator.push(
     context,
     MaterialPageRoute(

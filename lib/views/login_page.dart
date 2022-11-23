@@ -9,7 +9,6 @@ import '../components/rounded_text_field.dart';
 import '../constants/routes.dart' as routes;
 import '../constants/strings.dart';
 import '../models/login_model.dart';
-import '../models/main_model.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -18,8 +17,6 @@ class LoginPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final loginModel = ref.watch(loginProvider);
-
-    final mainModel = ref.watch(mainProvider);
 
     final emailEditingController =
         TextEditingController(text: loginModel.email);
@@ -57,10 +54,7 @@ class LoginPage extends ConsumerWidget {
               emailEditingController.text = '';
               passwordEditingController.text = '';
 
-              return await loginModel.login(
-                context: context,
-                mainModel: mainModel,
-              );
+              return await loginModel.login(context: context);
             },
             withRate: 0.5,
             color: Colors.green,
