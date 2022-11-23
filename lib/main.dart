@@ -12,6 +12,10 @@ import 'models/bottom_nav_model.dart';
 import 'models/main_model.dart';
 import 'views/login_page.dart';
 
+import 'views/main/home_screen.dart';
+import 'views/main/profile_screen.dart';
+import 'views/main/search_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -52,36 +56,14 @@ class MyHomePage extends ConsumerWidget {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          // : Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Text(mainModel.currentUserDoc['userName'].toString()),
-          //       const SizedBox(height: 100),
-          //       RoundedButton(
-          //         onPressed: () {
-          //           loginModel
-          //             ..email = ''
-          //             ..password = '';
-          //
-          //           mainModel.logout(context: context);
-          //
-          //           routes.toLoginPage(context: context);
-          //         },
-          //         withRate: 0.8,
-          //         color: Colors.orangeAccent,
-          //         text: logoutText,
-          //       ),
-          //     ],
-          //   ),
-
           : PageView(
               controller: bottomNavModel.pageController,
               onPageChanged: (index) =>
                   bottomNavModel.onPageChanged(index: index),
               children: const [
-                Text('home'),
-                Text('search'),
-                Text('profile'),
+                HomeScreen(),
+                SearchScreen(),
+                ProfileScreen(),
               ],
             ),
       bottomNavigationBar: BottomNav(
