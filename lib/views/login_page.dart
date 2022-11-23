@@ -2,13 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_udemy_firebase/components/rounded_button.dart';
-import 'package:test_udemy_firebase/components/rounded_password_field.dart';
-import 'package:test_udemy_firebase/components/rounded_text_field.dart';
-import 'package:test_udemy_firebase/models/main_model.dart';
 
+import '../components/rounded_button.dart';
+import '../components/rounded_password_field.dart';
+import '../components/rounded_text_field.dart';
 import '../constants/routes.dart' as routes;
+import '../constants/strings.dart';
 import '../models/login_model.dart';
+import '../models/main_model.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -27,7 +28,7 @@ class LoginPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text(loginTitle),
       ),
       body: Column(
         children: [
@@ -38,7 +39,7 @@ class LoginPage extends ConsumerWidget {
             controller: emailEditingController,
             color: Colors.white,
             borderColor: Colors.black,
-            hintText: 'enter email',
+            hintText: mailAddressText,
           ),
           const SizedBox(height: 10),
           RoundedPasswordField(
@@ -63,7 +64,7 @@ class LoginPage extends ConsumerWidget {
             },
             withRate: 0.5,
             color: Colors.green,
-            text: 'ログイン',
+            text: loginText,
           ),
           const SizedBox(height: 100),
           const Divider(color: Colors.black, thickness: 3),
@@ -87,7 +88,7 @@ class LoginPage extends ConsumerWidget {
             onPressed: () {
               routes.toSignupPage(context: context);
             },
-            child: const Text('Signup'),
+            child: const Text(signupTitle),
           ),
         ],
       ),

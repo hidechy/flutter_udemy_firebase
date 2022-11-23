@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_udemy_firebase/constants/strings.dart';
 import 'package:test_udemy_firebase/models/login_model.dart';
 
 import 'constants/routes.dart' as routes;
@@ -48,7 +49,7 @@ class MyHomePage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Home'),
+          title: const Text(homeTitle),
         ),
         body: Center(
           child: Column(
@@ -63,7 +64,7 @@ class MyHomePage extends ConsumerWidget {
 
                   routes.toLoginPage(context: context, mainModel: mainModel);
                 },
-                child: const Text('logout'),
+                child: const Text(logoutText),
               ),
               Text((mainModel.currentUser == null) ? 'null' : 'not null'),
             ],

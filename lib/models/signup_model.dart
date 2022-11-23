@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_udemy_firebase/constants/strings.dart';
 
 import '../constants/routes.dart' as routes;
 import '../domain/firestore_user/firestore_user.dart';
@@ -23,7 +24,7 @@ class SignupModel extends ChangeNotifier {
     final now = Timestamp.now();
 
     final firestoreUser = FirestoreUser(
-      userName: 'hidechy',
+      userName: dummyUserName,
       uid: uid,
       email: email,
       createdAt: now,
@@ -34,7 +35,7 @@ class SignupModel extends ChangeNotifier {
     await FirebaseFirestore.instance.collection('users').doc(uid).set(userData);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('user create')),
+      const SnackBar(content: Text(signupCompleteText)),
     );
 
     routes.toMyApp(context: context);

@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_udemy_firebase/components/rounded_button.dart';
-import 'package:test_udemy_firebase/components/rounded_password_field.dart';
 
+import '../components/rounded_button.dart';
+import '../components/rounded_password_field.dart';
 import '../components/rounded_text_field.dart';
+import '../constants/strings.dart';
 import '../models/signup_model.dart';
 
 class SignupPage extends ConsumerWidget {
@@ -23,7 +24,7 @@ class SignupPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Signup'),
+        title: const Text(signupTitle),
       ),
       body: Column(
         children: [
@@ -34,7 +35,7 @@ class SignupPage extends ConsumerWidget {
             controller: emailEditingController,
             color: Colors.white,
             borderColor: Colors.black,
-            hintText: 'enter email',
+            hintText: mailAddressText,
           ),
           const SizedBox(height: 10),
           RoundedPasswordField(
@@ -53,7 +54,7 @@ class SignupPage extends ConsumerWidget {
             },
             withRate: 0.5,
             color: Colors.green,
-            text: '新規登録',
+            text: signupText,
           ),
         ],
       ),
