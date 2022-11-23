@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_udemy_firebase/components/rounded_button.dart';
+import 'package:test_udemy_firebase/components/rounded_password_field.dart';
+import 'package:test_udemy_firebase/components/rounded_text_field.dart';
 import 'package:test_udemy_firebase/models/main_model.dart';
 
 import '../constants/routes.dart' as routes;
@@ -29,28 +32,42 @@ class LoginPage extends ConsumerWidget {
       body: Column(
         children: [
           const SizedBox(height: 10),
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            controller: emailEditingController,
+          RoundedTextField(
+            keybordType: TextInputType.emailAddress,
             onChanged: (text) => loginModel.email = text,
+            controller: emailEditingController,
+            color: Colors.white,
+            borderColor: Colors.black,
+            hintText: 'enter email',
           ),
           const SizedBox(height: 10),
-          TextFormField(
-            keyboardType: TextInputType.visiblePassword,
-            controller: passwordEditingController,
+          RoundedPasswordField(
             onChanged: (text) => loginModel.password = text,
-            //
+            controller: passwordEditingController,
             obscureText: loginModel.isObscure,
-            decoration: InputDecoration(
-              suffix: InkWell(
-                onTap: loginModel.toggleIsObscure,
-                child: (loginModel.isObscure)
-                    ? const Icon(Icons.visibility_off)
-                    : const Icon(Icons.visibility),
-              ),
-            ),
+            toggleIsObscureText: loginModel.toggleIsObscure,
+            color: Colors.white,
+            borderColor: Colors.black,
+            shadowColor: Colors.purpleAccent,
           ),
           const SizedBox(height: 50),
+          RoundedButton(
+            onPressed: () async {
+              emailEditingController.text = '';
+              passwordEditingController.text = '';
+
+              return await loginModel.login(
+                context: context,
+                mainModel: mainModel,
+              );
+            },
+            withRate: 0.5,
+            color: Colors.green,
+            text: 'ログイン',
+          ),
+          const SizedBox(height: 100),
+          const Divider(color: Colors.black, thickness: 3),
+          const SizedBox(height: 20),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
             onPressed: () {
@@ -63,7 +80,7 @@ class LoginPage extends ConsumerWidget {
             },
             child: const Text('dummy'),
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 20),
           ElevatedButton(
             style:
                 ElevatedButton.styleFrom(backgroundColor: Colors.purpleAccent),
@@ -73,18 +90,6 @@ class LoginPage extends ConsumerWidget {
             child: const Text('Signup'),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          emailEditingController.text = '';
-          passwordEditingController.text = '';
-
-          return await loginModel.login(
-            context: context,
-            mainModel: mainModel,
-          );
-        },
-        child: const Icon(Icons.login),
       ),
     );
   }
