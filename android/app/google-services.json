@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "544704950517",
+    "project_id": "flutter-firebase-1123",
+    "storage_bucket": "flutter-firebase-1123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544704950517:android:6bbae0b532f93908e395bc",
+        "android_client_info": {
+          "package_name": "com.example.test_udemy_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544704950517-o4r7vk92iogeeq06lmcb7t93v6ijfi6p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVP816_YOtBtCfCIxOMl6QcnpLrisJnUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544704950517-o4r7vk92iogeeq06lmcb7t93v6ijfi6p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
