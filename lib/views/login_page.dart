@@ -8,14 +8,14 @@ import '../constants/routes.dart' as routes;
 import '../models/login_model.dart';
 
 class LoginPage extends ConsumerWidget {
-  const LoginPage({super.key, required this.mainModel});
-
-  final MainModel mainModel;
+  const LoginPage({super.key});
 
   ///
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final loginModel = ref.watch(loginProvider);
+
+    final mainModel = ref.watch(mainProvider);
 
     final emailEditingController =
         TextEditingController(text: loginModel.email);

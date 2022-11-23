@@ -31,7 +31,7 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       home: (mainModel.currentUser == null)
-          ? LoginPage(mainModel: mainModel)
+          ? const LoginPage()
           : const MyHomePage(),
     );
   }

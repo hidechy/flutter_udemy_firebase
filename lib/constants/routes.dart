@@ -31,9 +31,7 @@ void toLoginPage(
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => LoginPage(
-        mainModel: mainModel,
-      ),
+      builder: (context) => const LoginPage(),
     ),
   );
 }
