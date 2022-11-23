@@ -60,10 +60,10 @@ class MyHomePage extends ConsumerWidget {
               controller: bottomNavModel.pageController,
               onPageChanged: (index) =>
                   bottomNavModel.onPageChanged(index: index),
-              children: const [
-                HomeScreen(),
-                SearchScreen(),
-                ProfileScreen(),
+              children: [
+                const HomeScreen(),
+                const SearchScreen(),
+                ProfileScreen(mainModel: mainModel),
               ],
             ),
       bottomNavigationBar: BottomNav(

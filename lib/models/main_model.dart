@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/routes.dart' as routes;
+import '../domain/firestore_user/firestore_user.dart';
 
 final mainProvider = ChangeNotifierProvider((ref) => MainModel());
 
@@ -20,6 +21,8 @@ class MainModel extends ChangeNotifier {
 
   late DocumentSnapshot<Map<String, dynamic>> currentUserDoc;
 
+  late FirestoreUser firestoreUser;
+
   Future<void> init() async {
     startLoading();
 
@@ -30,6 +33,8 @@ class MainModel extends ChangeNotifier {
           .collection('users')
           .doc(currentUser?.uid)
           .get();
+
+      firestoreUser = FirestoreUser.fromJson(currentUserDoc.data()!);
     }
 
     endLoading();
