@@ -14,3 +14,8 @@ const String loginText = 'ログインする';
 //
 const String homeTitle = 'ホーム';
 const String logoutText = 'ログアウトする';
+
+//
+const bottomNavText1 = 'Home';
+const bottomNavText2 = 'SEARCH';
+const bottomNavText3 = 'PROFILE';

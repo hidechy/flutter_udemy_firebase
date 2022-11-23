@@ -5,11 +5,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'components/rounded_button.dart';
-import 'constants/routes.dart' as routes;
+import 'components/bottom_nav.dart';
 import 'constants/strings.dart';
 import 'firebase_options.dart';
-import 'models/login_model.dart';
+import 'models/bottom_nav_model.dart';
 import 'models/main_model.dart';
 import 'views/login_page.dart';
 
@@ -43,7 +42,7 @@ class MyHomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mainModel = ref.watch(mainProvider);
 
-    final loginModel = ref.watch(loginProvider);
+    final bottomNavModel = ref.watch(bottomNavProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -53,27 +52,41 @@ class MyHomePage extends ConsumerWidget {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(mainModel.currentUserDoc['userName'].toString()),
-                const SizedBox(height: 100),
-                RoundedButton(
-                  onPressed: () {
-                    loginModel
-                      ..email = ''
-                      ..password = '';
+          // : Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Text(mainModel.currentUserDoc['userName'].toString()),
+          //       const SizedBox(height: 100),
+          //       RoundedButton(
+          //         onPressed: () {
+          //           loginModel
+          //             ..email = ''
+          //             ..password = '';
+          //
+          //           mainModel.logout(context: context);
+          //
+          //           routes.toLoginPage(context: context);
+          //         },
+          //         withRate: 0.8,
+          //         color: Colors.orangeAccent,
+          //         text: logoutText,
+          //       ),
+          //     ],
+          //   ),
 
-                    mainModel.logout(context: context);
-
-                    routes.toLoginPage(context: context);
-                  },
-                  withRate: 0.8,
-                  color: Colors.orangeAccent,
-                  text: logoutText,
-                ),
+          : PageView(
+              controller: bottomNavModel.pageController,
+              onPageChanged: (index) =>
+                  bottomNavModel.onPageChanged(index: index),
+              children: const [
+                Text('home'),
+                Text('search'),
+                Text('profile'),
               ],
             ),
+      bottomNavigationBar: BottomNav(
+        bottomNavModel: bottomNavModel,
+      ),
     );
   }
 }
